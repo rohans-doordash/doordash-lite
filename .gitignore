@@ -4,6 +4,7 @@
 
 venv
 *.pyc
+*.log
 *.egg-info
 *.pot
 *.py[co]

@@ -11,6 +11,7 @@ class Customer(models.Model):
     address = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
     phone = models.CharField(max_length=200)
+    is_new_customer_renamed = models.BooleanField(default=True)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
@@ -35,3 +36,16 @@ class OrderItemRelationship(models.Model):
     order = models.ForeignKey(Order)
     food_item = models.ForeignKey(FoodItem)
     quantity = models.IntegerField()
+    special_instructions = models.CharField(max_length=200)
+    subtotal = models.FloatField()
+
+
+class Restaurant(models.Model):
+    name = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
+
+
+class Menu(models.Model):
+    food_items = models.ManyToManyField(FoodItem)
+    name = models.CharField(max_length=200)
+    restaurant = models.ForeignKey(Restaurant)
